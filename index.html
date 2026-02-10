@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>學校倉庫管理系統</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header>
+        <h1>📦 學校倉庫管理系統</h1>
+        <p>可用手機拍照、語音輸入、手動輸入數量與存放地點。</p>
+      </header>
+
+      <section class="card">
+        <h2>新增庫存</h2>
+        <form id="inventory-form">
+          <label>
+            分類
+            <select id="category" required>
+              <option value="">請選擇分類</option>
+              <option>食材</option>
+              <option>文具</option>
+              <option>教具</option>
+              <option>玩具</option>
+              <option>電子設備</option>
+              <option>工作電腦/印表機</option>
+              <option>其他</option>
+            </select>
+          </label>
+
+          <label>
+            品名
+            <div class="with-action">
+              <input id="name" type="text" placeholder="例如：彩色筆" required />
+              <button class="secondary" type="button" data-voice-target="name">🎤</button>
+            </div>
+          </label>
+
+          <label>
+            數量
+            <input id="quantity" type="number" min="0" step="1" placeholder="請輸入數量" required />
+          </label>
+
+          <label>
+            存放地點
+            <div class="with-action">
+              <input id="location" type="text" placeholder="例如：A棟2樓儲藏室" required />
+              <button class="secondary" type="button" data-voice-target="location">🎤</button>
+            </div>
+          </label>
+
+          <label>
+            備註
+            <div class="with-action">
+              <input id="note" type="text" placeholder="可填寫採購或使用說明" />
+              <button class="secondary" type="button" data-voice-target="note">🎤</button>
+            </div>
+          </label>
+
+          <label>
+            照片
+            <input id="photo" type="file" accept="image/*" capture="environment" />
+          </label>
+
+          <button class="primary" type="submit">新增入庫</button>
+          <p id="voice-status" class="status">語音功能待命中。</p>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>庫存清單</h2>
+        <div class="filters">
+          <input id="search" type="search" placeholder="搜尋品名、地點、備註" />
+          <select id="filter-category">
+            <option value="all">全部分類</option>
+            <option>食材</option>
+            <option>文具</option>
+            <option>教具</option>
+            <option>玩具</option>
+            <option>電子設備</option>
+            <option>工作電腦/印表機</option>
+            <option>其他</option>
+          </select>
+        </div>
+        <ul id="inventory-list" class="inventory-list"></ul>
+      </section>
+    </main>
+
+    <template id="item-template">
+      <li class="inventory-item">
+        <img class="thumb" alt="庫存照片" />
+        <div class="content">
+          <p class="title"></p>
+          <p class="meta"></p>
+          <p class="note"></p>
+        </div>
+        <button class="danger" type="button">刪除</button>
+      </li>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
